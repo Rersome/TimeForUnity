@@ -18,7 +18,15 @@ public class Player : MonoBehaviour
 
     public float points;
 
+    public float maxHealth;
+    public float health;
+
     //Methods
+    void Start()
+    {
+        health = maxHealth;
+    }
+
     void Update()
     {
         //Player facing mouse
@@ -52,6 +60,11 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
+        //Player death
+        if(health <= 0)
+        {
+            Die();
+        }
     }
 
     void Shoot()
@@ -60,5 +73,8 @@ public class Player : MonoBehaviour
         bulletSpawned.rotation = bulletSpawnPoint.transform.rotation;
 
     }
-
+    public void Die()
+    {
+        print("You've died!");
+    }
 }

@@ -11,7 +11,14 @@ public class Bullet : MonoBehaviour
     private GameObject triggeringEnemy;
     public float damage;
 
+    private GameObject player;
+
     //Methods
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
@@ -27,6 +34,10 @@ public class Bullet : MonoBehaviour
             triggeringEnemy = other.gameObject;
             triggeringEnemy.GetComponent<Enemy>().health -= damage;
             Destroy(this.gameObject);
+        }
+        if(other.tag == "Player")
+        {
+            player.GetComponent<Player>().health -= 20;
         }
     }
 }
